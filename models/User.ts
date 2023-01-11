@@ -10,8 +10,8 @@ const userSchema = new mongoose.Schema<IUser>({
     profilePicture: { type: String, required: true, default: '' }
 });
 
-export const UserModel = mongoose.model<IUser & mongoose.Document>('User', userSchema);
-
+export const UserModel =
+    mongoose.model<IUser & mongoose.Document>('User', userSchema);
 
 
 

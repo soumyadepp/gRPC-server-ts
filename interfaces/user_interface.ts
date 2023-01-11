@@ -6,3 +6,4 @@ export interface IUser {
     logins: Number;
     profilePicture: string;
 }
+
