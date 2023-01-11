@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package users;
+
+//service definition
+service UserService {
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+    rpc DeleteUserByEmail(DeleteUserRequest) returns (DeleteUserResponse) {}
+    rpc EditUserByEmail(EditUserRequest) returns (EditUserResponse) {}
+    rpc GetAllUsers(GetUsersRequest) returns (UserList) {}
+    rpc GetUserByEmail (GetUserByEmailRequest) returns (GetUserByEmailResponse) {}
+}
+
+message CreateUserRequest { 
+    User user = 1;
+}
+
+message CreateUserResponse {
+    oneof user_or_error {
+        User user = 1;
+        Error error = 2;
+    }
+}
+
+message DeleteUserRequest {
+    string email = 1;
+}
+
+message DeleteUserResponse {
+    oneof user_or_error {
+        User user = 1;
+        Error error = 2;
+    }
+}
+
+message EditUserRequest {
+    User user = 1;
+}
+
+message EditUserResponse {
+    oneof user_or_error {
+        User user = 1;
+        Error error = 2;
+    }
+}
+
+message Error {
+    string message = 1;
+}
+
+message GetUsersRequest {}
+
+message GetUserByEmailRequest {
+    string email = 1;
+}
+
+message GetUserByEmailResponse {
+    oneof user_or_error {
+        User user = 1;
+        Error error = 2;
+    }
+}
+
+message User {
+    string _id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string designation = 4;
+    string email = 5;
+    int32 logins = 6;
+    string profilePicture = 7;
+}
+
+message UserList {
+    repeated User user = 1;
+}
